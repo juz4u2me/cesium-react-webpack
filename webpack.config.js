@@ -12,14 +12,14 @@ module.exports = {
         app: './src/index.js'
     },
     output: {
-        filename: 'index_bundle.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     target: 'web',
     devServer: {
 	port: '5000',
 	static: {
-	  directory: path.join(__dirname, 'public')
+	  directory: path.join(__dirname, 'dist')
     	},
     	open: true,
     	hot: true,
@@ -68,8 +68,8 @@ module.exports = {
             ]
         }),
         new webpack.DefinePlugin({
-            // Define relative base path in cesium for loading assets
-            CESIUM_BASE_URL: JSON.stringify('')
+            // Define relative base path in cesium for loading assets, with respect to the route that Cesium is called, especially for nested route
+            CESIUM_BASE_URL: JSON.stringify('../')
         })
     ],
     mode: 'development'
